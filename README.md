@@ -31,6 +31,20 @@ $ 	. virtual/bin/activate
 $	pip install -r requirements.txt
 `
 
+## Run
+
+C++
+
+`
+$ 	./run.sh 0 1 0 1 1
+`
+
+Python
+
+`
+$ 	python3 main.py 0 1 0 1 1
+`
+
 ## Website
 
 You can follow the updates on the competition and after, about us on our website.
