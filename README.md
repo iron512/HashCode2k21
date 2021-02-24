@@ -12,6 +12,7 @@ We are going to use **python** to develop a fast solution and probably preproces
 Python requires a little setup, C++ is already good to go.
 
 Generate a the virtual environment for python.
+
 `
 $	cd python
 `
@@ -21,6 +22,7 @@ $	pyhton3 - m venv virtual
 `
 
 Activate it and install the environmental requirements.
+
 `
 $ 	. virtual/bin/activate
 `
