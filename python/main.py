@@ -11,11 +11,30 @@ class bcolors:
     RESET = '\033[0m'
 
 def solution(handler):
-	#Write here the solution
 	output = open("../outputs/" + handler.name.replace("../inputs","")[1] + "_exec.out", "w")
 
+	#Write here the solution
+	first = handler.readline()
+	first = first.replace("\n","").split(" ")
+
+	symTimeCount = first[0]
+	intersectionCount = first[1]
+	streetCount = first[2]
+	carsCount = first[3]
+	pointsCount = first[4]
+
+	streets = []
+	cars = []
+
 	for line in handler.readlines():
-		output.write(line)
+		if int(len(streets)) != int(streetCount):		
+			streets.append(tuple(line.replace("\n","").split(" ")))
+		else:
+			cars.append(tuple(line.replace("\n","").split(" ")))
+
+	print(streets[0])
+	print(cars[0])
+	
 	output.close()
 
 
