@@ -1,5 +1,6 @@
-a_example.in
-b_little_bit_of_everything.in
-c_many_ingredients.in
-d_many_pizzas.in
-e_many_teams.in
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+f.txt
