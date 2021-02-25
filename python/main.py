@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys
+import os
+
 
 class bcolors:
     GREEN = '\033[92m'
@@ -10,18 +12,21 @@ class bcolors:
 
 def solution(handler):
 	#Write here the solution
-	print(handler.readline()[:-1])
+	output = open("../outputs/" + handler.name.replace("../inputs","")[1] + "_exec.out", "w")
+
+	for line in handler.readlines():
+		output.write(line)
+	output.close()
 
 
 #--- MAIN ---
-#Open the anchor, a file containing the name of the input files (avoid hardcoding).
-anchor = open("../files.txt","r")
 inputs = []
 
 print(bcolors.YELLOW + "	PYTHON" + bcolors.RESET)
 print()
-print("Loading inputs from files.txt:\n") 
-for row in anchor.readlines():
+
+print("Loading files from inputs directory:\n") 
+for row in sorted(os.listdir("../inputs/")):
 	row = row.replace("\n","")
 	print("	- " + row)
 	inputs.append(open("../inputs/"+row,"r"))
