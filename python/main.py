@@ -2,7 +2,8 @@
 
 import sys
 import os
-
+import math 
+import numpy as np
 
 class bcolors:
     GREEN = '\033[92m'
@@ -26,15 +27,75 @@ def solution(handler):
 	streets = []
 	cars = []
 
+	carTrips = {}
+	intersectionMap = {}
+	roadMap = {}
+
 	for line in handler.readlines():
 		if int(len(streets)) != int(streetCount):		
-			streets.append(tuple(line.replace("\n","").split(" ")))
-		else:
-			cars.append(tuple(line.replace("\n","").split(" ")))
+			line = line.replace("\n","").split(" ")
+			streets.append(tuple(line))
+			carTrips[line[2]] = 0
 
-	print(streets[0])
-	print(cars[0])
-	
+			if line[1] not in intersectionMap:
+				intersectionMap[line[1]] = []
+			intersectionMap[line[1]].append(line[2])
+			roadMap[line[2]] = line[3]
+
+		else:
+			line = line.replace("\n","").split(" ")
+			cars.append(tuple(line))
+			for sample in line[1:]:
+				carTrips[sample] = carTrips[sample] + 1
+
+
+	print(roadMap)
+
+	intersCount = 0
+	for intersect in intersectionMap:
+		#output.write(intersect + "\n")
+		#output.write(str(len(intersectionMap[intersect])) + "\n")
+		
+		tmpCount = 0
+		tmp = ""
+
+		for elem in intersectionMap[intersect]:
+			if math.ceil(carTrips[elem]) != 0:
+				tmpCount = tmpCount+1;
+			#output.write(str(elem) + " 1\n")
+		
+		if tmpCount != 0:
+			intersCount += 1;
+
+	output.write(str(intersCount) + "\n")
+
+	for intersect in intersectionMap:
+		#output.write(intersect + "\n")
+		#output.write(str(len(intersectionMap[intersect])) + "\n")
+
+		tmpCount = 0
+		tmp = ""
+
+		newArray = []
+		for elem in intersectionMap[intersect]:
+			tup = (carTrips[elem],elem)
+			newArray.append(tup)
+		
+		newArray = sorted(newArray, reverse=True)
+
+		trafficLight = 8
+
+		for key,elem in newArray:
+			if math.ceil(carTrips[elem]/5) != 0:
+				#tmp = tmp + str(elem) + " " + str(int(max(1,trafficLight)))+"\n"
+				#trafficLight = trafficLight/2
+				tmp = tmp + str(elem) + " " + str(math.ceil(carTrips[elem])/10)+"\n"
+				tmpCount = tmpCount+1;
+			#output.write(str(elem) + " 1\n")
+
+		if tmpCount != 0:
+			output.write(intersect + "\n" + str(tmpCount) + "\n" + tmp)
+
 	output.close()
 
 
