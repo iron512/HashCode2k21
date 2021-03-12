@@ -82,14 +82,18 @@ def solution(handler):
 			newArray.append(tup)
 		
 		newArray = sorted(newArray, reverse=True)
-
-		trafficLight = 8
+		first = True
 
 		for key,elem in newArray:
 			if math.ceil(carTrips[elem]/5) != 0:
 				#tmp = tmp + str(elem) + " " + str(int(max(1,trafficLight)))+"\n"
 				#trafficLight = trafficLight/2
-				tmp = tmp + str(elem) + " " + str(math.ceil(carTrips[elem])/10)+"\n"
+				multiplier = 1
+				if first:
+					multiplier = 3
+					first = False
+
+				tmp = tmp + str(elem) + " " + str(math.ceil(carTrips[elem]/10)*multiplier)+"\n"
 				tmpCount = tmpCount+1;
 			#output.write(str(elem) + " 1\n")
 
